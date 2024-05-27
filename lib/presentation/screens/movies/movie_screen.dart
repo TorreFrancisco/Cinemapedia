@@ -207,9 +207,8 @@ class _CustomSliverAppBar extends ConsumerWidget {
         IconButton(
             onPressed: () async {
               await ref
-                  .watch(localStorageRepositoryProvider)
-                  .toggleFavourite(movie); //añadir a favoritos
-
+                  .read(favoriteMoviesProvider.notifier)
+                  .toggleFavorite(movie);
               ref.invalidate(isFavouriteProvider(movie
                   .id)); //<--- se invalida el provider de la linea 209 para que vuelva a validarlo
             },
